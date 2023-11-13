@@ -1,0 +1,21 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - source
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v2
+        with:
+          ref: source
+          
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run deploy
