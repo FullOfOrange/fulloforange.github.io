@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - source
-
+# 이 jobs 에 npm modules 를 캐싱할 수 있도록 해줘
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -13,9 +13,16 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: source
-          
+
       - name: Install dependencies
         run: npm install
 
       - name: Build
-        run: npm run deploy
+        run: npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: main
