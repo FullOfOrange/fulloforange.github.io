@@ -3,8 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - source
-      
+      - none
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
