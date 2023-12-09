@@ -27,7 +27,11 @@ const Title = styled.h1`
 const Resume = ({data}) => {
     return (
         <Layout>
-            <SEO title={title} description={description} url={siteUrl}/>
+            <SEO
+                title={"백엔드 개발자 이력서, 육진혁"}
+                description={"당근마켓 백엔드 개발자 육진혁 이력서"}
+                url={siteUrl + "resume"}
+            />
             <VerticalSpace size={48}/>
             <About/>
             <Divider/>
