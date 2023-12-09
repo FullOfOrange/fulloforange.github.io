@@ -2,14 +2,12 @@ import React from "react"
 
 import Layout from "components/Layout"
 import SEO from "components/SEO"
-import Bio from "components/Bio"
 import Divider from "components/Divider"
 import VerticalSpace from "components/VerticalSpace"
 
 import {title, description, siteUrl} from "../../blog-config"
 import styled from "styled-components";
 import {Introductions} from "../components/Resume/Introductions";
-import Title from "../components/Title";
 import {About} from "../components/Resume/about";
 
 const SectionWrapper = styled.div`
@@ -17,6 +15,13 @@ const SectionWrapper = styled.div`
   @media (max-width: 768px) {
     padding: 0 15px;
   }
+`
+
+const Title = styled.h1`
+  font-size: 33.6px;
+  font-weight: 300;
+  color: ${props => props.theme.colors.text};
+  word-break: break-all;
 `
 
 const Resume = ({data}) => {
@@ -67,7 +72,7 @@ const Resume = ({data}) => {
                 />
                 <Introductions
                     title={"Naver (V CIC)"}
-                    subTitle={"Backend Developer, Intern | 2019.03 ~ 2019.04"}
+                    subTitle={"Backend Developer, Intern | 2020.01 ~ 02"}
                     description={`
                         V CIC 서버 개발 인턴                       
                     `}
@@ -106,6 +111,50 @@ const Resume = ({data}) => {
                     description={`
                         당근모임을 개발하며 만났던 기술적 고민들과 해결 과정을 가볍게 소개함.
                     `}
+                />
+            </SectionWrapper>
+            <Divider/>
+            <SectionWrapper>
+                <Title size="bg">프로젝트</Title>
+                <Introductions
+                    title={"페스타 클론 프로젝트"}
+                    subTitle={"부스트캠프 최종 프로젝트 | 2019.11 ~ 12"}
+                    homepage={{
+                        text: "Github Repository",
+                        link: "https://github.com/connect-foundation/2019-12"
+                    }}
+                    description={`
+                        이벤트 플랫폼인 페스타 클론 프로젝트에서 인프라와 백엔드 담당.
+                        지속 가능한 개발을 위해 CICD, 100% 테스트 커버리지 등을 중심으로 진행
+                    `}
+                    infos={`
+                        • Express, Typescript 기반의 RESTful API 서버 개발
+                        • 티켓 구매 무결성 확인 및 예약 로직 구현
+                        • K8S 기반의 인프라 설계 및 구축
+                        • Travis CI 를 이용한 E2E, API 테스트 및 Docker Image 빌드 CI/CD 구축
+                        • Hooks, Context API 를 이용한 React Store 구조 설계
+                    `}
+                />
+            </SectionWrapper>
+            <Divider/>
+            <SectionWrapper>
+                <Introductions
+                    title={"부스트캠프 2019"}
+                    subTitle={"2019.07 ~ 12"}
+                    description={`
+                        5개월간 진행되는 부스트캠프에 참여. JS 기반의 웹 프론트엔드와 백엔드 학습 및 프로젝트 진행.
+                    `}
+                />
+                <Introductions
+                    title={"육군 병장 만기 전역"}
+                    subTitle={"전산병 | 2017.02 ~ 2018.11"}
+                    description={`
+                        대기업 규모 백본 및 L4 라우터 및 EJB 기반 서버 관리 및 유지보수
+                    `}
+                />
+                <Introductions
+                    title={"숭실대학교 컴퓨터학부"}
+                    subTitle={"재학중 | 2016.03 ~"}
                 />
             </SectionWrapper>
         </Layout>

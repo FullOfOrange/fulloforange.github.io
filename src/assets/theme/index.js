@@ -14,6 +14,7 @@ export const light = {
   colors: {
     bodyBackground: "#ffffff",
     text: GRAY9,
+    subText: GRAY8,
     secondaryText: GRAY7,
     tertiaryText: GRAY6,
     mutedText: GRAY5,
@@ -53,6 +54,7 @@ export const dark = {
   colors: {
     bodyBackground: GRAY9,
     text: GRAY0,
+    subText: GRAY2,
     secondaryText: GRAY4,
     tertiaryText: GRAY5,
     mutedText: GRAY6,

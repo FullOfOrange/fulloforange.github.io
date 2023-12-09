@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {Infos} from "../Infos";
 
 const Wrapper = styled.div`
-  margin-bottom: 60px;
+  margin-top: 60px;
 `
 
 const TitleWrapper = styled.div`
@@ -13,8 +13,8 @@ const TitleWrapper = styled.div`
 
 const Title = styled.h1`
   font-size: 22.6px;
-  font-weight: 700;
-  color: ${props => props.theme.colors.text};
+  font-weight: 600;
+  color: ${props => props.theme.colors.subText};
   word-break: break-all;
 `
 
@@ -44,7 +44,7 @@ const Description = styled.p`
   margin-bottom: 36px;
   line-height: 1.6;
   font-size: 16px;
-  color: ${props => props.theme.colors.secondaryText};
+  color: ${props => props.theme.colors.tertiaryText};
   word-break: break-all;
 `
 
@@ -52,7 +52,7 @@ const Description = styled.p`
  * @param title {string}
  * @param subTitle {string}
  * @param homepage {{text: string, link: string} | undefined}
- * @param description {string}
+ * @param description {string | undefined}
  * @param infos {string | undefined}
  * @returns {JSX.Element}
  */
@@ -80,7 +80,7 @@ export const Introductions = (
                     >{homepage.text}</HomepageLinkText>
                 )
             }</ExtraWrapper>
-            <Description>{description}</Description>
+            {description && <Description>{description}</Description>}
             {infos && <Infos text={infos}/>}
         </Wrapper>
     )
