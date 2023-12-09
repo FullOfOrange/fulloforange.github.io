@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://fulloforange.github.io/sitemap-index.xml
+Host: https://fulloforange.github.io
