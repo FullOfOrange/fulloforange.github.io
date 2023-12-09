@@ -1,5 +1,5 @@
 module.exports = {
-  title: "FullOfOrange",
+  name: "육진혁",
   description: "Hi, I'm backend developer in korea",
   author: "FullOfOrange",
   siteUrl: "https://fulloforange.github.io/",

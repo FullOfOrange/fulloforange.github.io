@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react"
-import styled, { useTheme } from "styled-components"
+import React, {useEffect, useState} from "react"
+import styled, {useTheme} from "styled-components"
 
-import { Link } from "gatsby"
+import {Link} from "gatsby"
 
-import { title } from "../../../../blog-config"
+import {title} from "../../../../blog-config"
 
 import {
-  FaSun,
-  FaMoon,
-  FaTags,
-  FaRss,
-  FaSearch,
-  FaListUl,
+    FaSun,
+    FaMoon,
+    FaTags,
+    FaRss,
+    FaSearch,
+    FaListUl,
 } from "react-icons/fa"
 
 const HeaderWrapper = styled.header`
@@ -43,12 +43,31 @@ const Inner = styled.div`
   }
 `
 
-const BlogTitle = styled.span`
+const TitleWrapper = styled.div`
+  display: flex;
+`
+
+const BlogTitle = styled.p`
   letter-spacing: -1px;
   font-family: "Source Code Pro", sans-serif;
   font-weight: 700;
   font-size: 24px;
   color: ${props => props.theme.colors.text};
+
+  & > a {
+    text-decoration: none;
+    color: inherit;
+  }
+`
+
+const SubTitle = styled.p`
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 32px;
+  font-family: "Source Code Pro", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: ${props => props.theme.colors.secondaryText};
 
   & > a {
     text-decoration: none;
@@ -108,64 +127,69 @@ const IconRail = styled.div`
   }
 `
 
-const Header = ({ toggleTheme }) => {
-  const theme = useTheme()
-  const [scrollY, setScrollY] = useState()
-  const [hidden, setHidden] = useState(false)
+const Header = ({toggleTheme}) => {
+    const theme = useTheme()
+    const [scrollY, setScrollY] = useState()
+    const [hidden, setHidden] = useState(false)
 
-  const detectScrollDirection = () => {
-    if (scrollY >= window.scrollY) {
-      // scroll up
-      setHidden(false)
-    } else if (scrollY < window.scrollY && 400 <= window.scrollY) {
-      // scroll down
-      setHidden(true)
+    const detectScrollDirection = () => {
+        if (scrollY >= window.scrollY) {
+            // scroll up
+            setHidden(false)
+        } else if (scrollY < window.scrollY && 400 <= window.scrollY) {
+            // scroll down
+            setHidden(true)
+        }
+
+        setScrollY(window.scrollY)
     }
 
-    setScrollY(window.scrollY)
-  }
+    useEffect(() => {
+        window.addEventListener("scroll", detectScrollDirection)
 
-  useEffect(() => {
-    window.addEventListener("scroll", detectScrollDirection)
+        return () => {
+            window.removeEventListener("scroll", detectScrollDirection)
+        }
+    }, [scrollY])
 
-    return () => {
-      window.removeEventListener("scroll", detectScrollDirection)
-    }
-  }, [scrollY])
+    useEffect(() => {
+        setScrollY(window.scrollY)
+    }, [])
 
-  useEffect(() => {
-    setScrollY(window.scrollY)
-  }, [])
-
-  return (
-    <HeaderWrapper isHidden={hidden}>
-      <Inner>
-        <BlogTitle>
-          <Link to="/">{title}</Link>
-        </BlogTitle>
-        <Menu>
-          <ToggleWrapper>
-            <IconRail theme={theme.name}>
-              <FaSun onClick={toggleTheme} />
-              <FaMoon onClick={toggleTheme} />
-            </IconRail>
-          </ToggleWrapper>
-          <Link to="/tags">
-            <FaTags />
-          </Link>
-          <Link to="/series">
-            <FaListUl />
-          </Link>
-          <Link to="/rss.xml">
-            <FaRss />
-          </Link>
-          <Link to="/search">
-            <FaSearch style={{ marginRight: 0 }} />
-          </Link>
-        </Menu>
-      </Inner>
-    </HeaderWrapper>
-  )
+    return (
+        <HeaderWrapper isHidden={hidden}>
+            <Inner>
+                <TitleWrapper>
+                    <BlogTitle>
+                        <Link to="/">{title}</Link>
+                    </BlogTitle>
+                    <SubTitle>
+                        <Link to="/resume">about</Link>
+                    </SubTitle>
+                </TitleWrapper>
+                <Menu>
+                    <ToggleWrapper>
+                        <IconRail theme={theme.name}>
+                            <FaSun onClick={toggleTheme}/>
+                            <FaMoon onClick={toggleTheme}/>
+                        </IconRail>
+                    </ToggleWrapper>
+                    {/*<Link to="/tags">*/}
+                    {/*  <FaTags />*/}
+                    {/*</Link>*/}
+                    {/*<Link to="/series">*/}
+                    {/*  <FaListUl />*/}
+                    {/*</Link>*/}
+                    {/*<Link to="/rss.xml">*/}
+                    {/*  <FaRss />*/}
+                    {/*</Link>*/}
+                    <Link to="/search">
+                        <FaSearch style={{marginRight: 0}}/>
+                    </Link>
+                </Menu>
+            </Inner>
+        </HeaderWrapper>
+    )
 }
 
 export default Header
